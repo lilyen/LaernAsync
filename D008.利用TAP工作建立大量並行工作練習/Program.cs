@@ -29,12 +29,12 @@ namespace D008.利用TAP工作建立大量並行工作練習
 
                     HttpClient client = new HttpClient();
                     ShowDebugInfo(index, 1, tid, ">>>>");
-                    var result = client.GetStringAsync(URL);
-                    ShowDebugInfo(index, 1, tid, "<<<<", await result);
+                    var result = await client.GetStringAsync(URL);
+                    ShowDebugInfo(index, 1, tid, "<<<<", result);
 
                     ShowDebugInfo(index, 2, tid, ">>>>");
-                    result = client.GetStringAsync(URL);                    
-                    ShowDebugInfo(index, 2, tid, "<<<<", await result);
+                    result = await client.GetStringAsync(URL);                    
+                    ShowDebugInfo(index, 2, tid, "<<<<", result);
                 });
             }
 
