@@ -14,7 +14,7 @@ public class Program
     public static async Task MyPromiseAsync()
     {
         Console.WriteLine("3 " + String.Format("{0:D2}", Thread.CurrentThread.ManagedThreadId));
-        await Task.Delay(1);
+        await Task.Yield();
         Console.WriteLine("4 " + String.Format("{0:D2}", Thread.CurrentThread.ManagedThreadId));
         await Task.Delay(500);
         Console.WriteLine("5 " + String.Format("{0:D2}", Thread.CurrentThread.ManagedThreadId));
