@@ -12,7 +12,7 @@ namespace D008.利用TAP工作建立大量並行工作練習
     {
         static object __lockObj = new object();
 
-        static void Main(string[] args)
+        static void Maina(string[] args)
         {
             string URL = "http://mocky.azurewebsites.net/api/delay/2000";
                      
