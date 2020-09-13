@@ -30,8 +30,8 @@ namespace C009.執行緒不安全的範例
             thread2.Start();
 
             // 等候這兩個執行緒結束執行，這個時候，主執行緒是在 封鎖 狀態下，也就是無法繼續執行任何程式碼
-            //thread1.Join();
-            //thread2.Join();
+            thread1.Join();
+            thread2.Join();
 
             Console.WriteLine("已經處理完成...");
             Console.WriteLine("兩個執行緒聯合計算結果是:");
