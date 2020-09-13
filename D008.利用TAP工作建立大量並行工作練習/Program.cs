@@ -15,8 +15,7 @@ namespace D008.利用TAP工作建立大量並行工作練習
         static void Main(string[] args)
         {
             string URL = "http://mocky.azurewebsites.net/api/delay/2000";
-
-            HttpClient client = new HttpClient();
+                     
 
             for (int i = 0; i < 10; i++)
             {
@@ -24,16 +23,21 @@ namespace D008.利用TAP工作建立大量並行工作練習
 
                 Task.Run(() =>
                 {
+                    
                     // 取得當下的 ThreadId
                     var tid = String.Format("{0:D2}", Thread.CurrentThread.ManagedThreadId);
 
+                    HttpClient client = new HttpClient();
                     ShowDebugInfo(index, 1, tid, ">>>>");
-                    var result = client.GetStringAsync(URL).Result;
-                    ShowDebugInfo(index, 1, tid, "<<<<", result);
+                    var result1 = client.GetStringAsync(URL);
+                    
 
+                    HttpClient client2 = new HttpClient();
                     ShowDebugInfo(index, 2, tid, ">>>>");
-                    result = client.GetStringAsync(URL).Result;
-                    ShowDebugInfo(index, 2, tid, "<<<<", result);
+                    var result2 = client2.GetStringAsync(URL);
+
+                    ShowDebugInfo(index, 1, tid, "<<<<", result1.Result);
+                    ShowDebugInfo(index, 2, tid, "<<<<", result2.Result);
                 });
             }
 
