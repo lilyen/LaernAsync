@@ -21,7 +21,7 @@ namespace D008.利用TAP工作建立大量並行工作練習
             {
                 var index = string.Format("{0:D2}", (i + 1));
 
-                Task.Run(() =>
+                Task.Run(async () =>
                 {
                     
                     // 取得當下的 ThreadId
@@ -29,15 +29,12 @@ namespace D008.利用TAP工作建立大量並行工作練習
 
                     HttpClient client = new HttpClient();
                     ShowDebugInfo(index, 1, tid, ">>>>");
-                    var result1 = client.GetStringAsync(URL);
-                    
+                    var result = client.GetStringAsync(URL);
+                    ShowDebugInfo(index, 1, tid, "<<<<", await result);
 
-                    HttpClient client2 = new HttpClient();
                     ShowDebugInfo(index, 2, tid, ">>>>");
-                    var result2 = client2.GetStringAsync(URL);
-
-                    ShowDebugInfo(index, 1, tid, "<<<<", result1.Result);
-                    ShowDebugInfo(index, 2, tid, "<<<<", result2.Result);
+                    result = client.GetStringAsync(URL);                    
+                    ShowDebugInfo(index, 2, tid, "<<<<", await result);
                 });
             }
 
@@ -76,7 +73,7 @@ namespace D008.利用TAP工作建立大量並行工作練習
                 {
                     Console.ForegroundColor = ConsoleColor.Magenta;
                 }
-                Console.Write($"{DateTime.Now}");
+                Console.Write($"{DateTime.Now:HH:mm:ss:fffff}");
 
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 if (result != null)
