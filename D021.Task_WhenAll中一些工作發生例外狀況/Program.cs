@@ -21,6 +21,7 @@ namespace D021.Task_WhenAll中一些工作發生例外狀況
             catch (Exception exc)
             {
                 Console.WriteLine($"捕捉到例外異常的物件型別為 : {exc.GetType().Name}");
+                Console.WriteLine($"捕捉到例外異常的物件型別為 : {exc.Message}");
                 // 當所有等候工作都執行結束後，可以檢查是否有執行失敗的工作
                 foreach (Task faulted in allTasks.Where(t => t.IsFaulted))
                 {
